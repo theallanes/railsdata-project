@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_02_042651) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_02_044536) do
+  create_table "artists", force: :cascade do |t|
+    t.string "artist_name"
+    t.integer "label_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["label_id"], name: "index_artists_on_label_id"
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "genre_name"
     t.datetime "created_at", null: false
@@ -22,4 +30,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_02_042651) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "artists", "labels"
 end
